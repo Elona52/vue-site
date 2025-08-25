@@ -6,9 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+<<<<<<< Updated upstream
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build"
+=======
+    "preview": "vite preview"
+>>>>>>> Stashed changes
   },
   "dependencies": {
     "vue": "^3.5.18"
