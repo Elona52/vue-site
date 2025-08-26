@@ -91,7 +91,7 @@
 
     <!-- 색상 변경 예제 섹션 -->
     <section class="example-section">
-      <h3 class="section-title">🎨 마법 색상 팔레트</h3>
+      <h3 class="section-title">🎨 색상변경</h3>
       <div class="example-card">
         <div class="color-section">
           <!-- 마우스 호버 이벤트로 색상 변경 -->
@@ -119,7 +119,7 @@
 
     <!-- 음식 선택 예제 섹션 -->
     <section class="example-section">
-      <h3 class="section-title">🍽️ 인터랙티브 메뉴 선택</h3>
+      <h3 class="section-title">🍽️ 메뉴 선택</h3>
       <div class="example-card">
         <div class="food-selector">
           <!-- 음식 메뉴 목록 -->
