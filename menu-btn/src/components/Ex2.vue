@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>조건부 렌더링 예제</h2>
+    <h2>v-if 예제</h2>
     
     <div class="example">
       <h3>Boolean 조건</h3>
