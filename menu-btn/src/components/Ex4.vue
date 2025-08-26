@@ -6,7 +6,7 @@
       <h3 class="section-title">📋 기본 배열 렌더링</h3>
       <div class="example-card">
         <!-- 기본 객체 배열 -->
-        <div class="list-example">
+        <!-- <div class="list-example">
           <h4 class="example-subtitle">객체 배열 렌더링</h4>
           <div class="list-container">
             <div class="list-item" v-for="item in items" :key="item.message">
@@ -14,10 +14,10 @@
               <span class="item-text">{{ item.message }}</span>
             </div>
           </div>
-        </div>
+        </div> -->
         
         <!-- 간단한 배열 -->
-        <div class="list-example">
+        <!-- <div class="list-example">
           <h4 class="example-subtitle">문자열 배열 렌더링</h4>
           <div class="list-container">
             <div class="list-item" v-for="food in manyFood" :key="food">
@@ -25,7 +25,7 @@
               <span class="item-text">{{ food }}</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -34,7 +34,7 @@
       <h3 class="section-title">🍽️ 음식 메뉴 리스트</h3>
       <div class="example-card">
         <!-- 순서가 있는 리스트 -->
-        <div class="list-example">
+        <!-- <div class="list-example">
           <h4 class="example-subtitle">순서가 있는 리스트 (ol)</h4>
           <div class="ordered-list">
             <div class="ordered-item" v-for="(food, index) in manyFoods" :key="food">
@@ -42,10 +42,10 @@
               <span class="item-text">{{ food }}</span>
             </div>
           </div>
-        </div>
+        </div> -->
         
         <!-- 인덱스와 함께 표시 -->
-        <div class="list-example">
+        <!-- <div class="list-example">
           <h4 class="example-subtitle">인덱스와 함께 표시</h4>
           <div class="indexed-list">
             <div class="indexed-item" v-for="(food, idx) in manyFoods" :key="food">
@@ -53,7 +53,7 @@
               <span class="item-text">{{ food }}</span>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
 
