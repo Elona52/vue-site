@@ -59,7 +59,7 @@
 
     <!-- Assets 이미지 사용 예제 섹션 -->
     <section class="example-section">
-      <h3 class="section-title">🖼️ Assets 이미지 사용</h3>
+      <h3 class="section-title">Menu</h3>
       <div class="example-card">
         <div class="image-grid">
           <div class="image-card" v-for="food in foods_assets" :key="food.name">
@@ -76,7 +76,7 @@
     </section>
 
     <!-- Public 이미지 사용 예제 섹션 -->
-    <section class="example-section">
+    <!-- <section class="example-section">
       <h3 class="section-title">🌐 Public 이미지 사용</h3>
       <div class="example-card">
         <div class="image-grid">
@@ -91,7 +91,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
   </div>
 </template>
 

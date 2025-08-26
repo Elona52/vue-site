@@ -31,7 +31,7 @@
       </div>
     </section>
 
-    <!-- 전구 ON/OFF 예제 섹션 -->
+    전구 ON/OFF 예제 섹션
     <section class="example-section">
       <h3 class="section-title">💡 스마트 전구</h3>
       <div class="example-card">
