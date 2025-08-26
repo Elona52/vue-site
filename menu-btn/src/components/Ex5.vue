@@ -3,7 +3,7 @@
   <div class="ex5-container">
     <!-- 카운터 예제 섹션 -->
     <section class="example-section">
-      <h3 class="section-title">🔢 인터랙티브 카운터</h3>
+      <h3 class="section-title">🔢 카운터</h3>
       <div class="example-card">
         <div class="counter-section">
           <!-- 카운터 값 표시 -->
@@ -30,10 +30,10 @@
         </div>
       </div>
     </section>
-
-    전구 ON/OFF 예제 섹션
+<!-- 
+    전구 ON/OFF 예제 섹션 -->
     <section class="example-section">
-      <h3 class="section-title">💡 스마트 전구</h3>
+      <h3 class="section-title">💡 ON/OFF 버튼</h3>
       <div class="example-card">
         <div class="bulb-section">
           <!-- 전구 상태 표시 -->
@@ -62,7 +62,7 @@
 
     <!-- 입력 카운터 예제 섹션 -->
     <section class="example-section">
-      <h3 class="section-title">⌨️ 실시간 입력 분석</h3>
+      <h3 class="section-title">⌨️ 텍스트 입력</h3>
       <div class="example-card">
         <div class="input-section">
           <div class="input-container">
