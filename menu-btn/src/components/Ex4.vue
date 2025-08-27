@@ -1,49 +1,21 @@
 <template>
   <!-- Ex4 컴포넌트 - 리스트 렌더링 예제 -->
   <div class="ex4-container">
-    <!-- 기본 배열 렌더링 예제 섹션 -->
-    <section class="example-section">
-      <h3 class="section-title">📋 기본 배열 렌더링</h3>
-      <div class="example-card">
-        <!-- 기본 객체 배열 -->
-        <!-- <div class="list-example">
-          <h4 class="example-subtitle">객체 배열 렌더링</h4>
-          <div class="list-container">
-            <div class="list-item" v-for="item in items" :key="item.message">
-              <span class="item-icon">📝</span>
-              <span class="item-text">{{ item.message }}</span>
-            </div>
-          </div>
-        </div> -->
-        
-        <!-- 간단한 배열 -->
-        <!-- <div class="list-example">
-          <h4 class="example-subtitle">문자열 배열 렌더링</h4>
-          <div class="list-container">
-            <div class="list-item" v-for="food in manyFood" :key="food">
-              <span class="item-icon">🍽️</span>
-              <span class="item-text">{{ food }}</span>
-            </div>
-          </div>
-        </div> -->
-      </div>
-    </section>
 
     <!-- 음식 메뉴 리스트 예제 섹션 -->
     <section class="example-section">
       <h3 class="section-title">🍽️ 음식 메뉴 리스트</h3>
       <div class="example-card">
         <!-- 순서가 있는 리스트 -->
-        <!-- <div class="list-example">
-          <h4 class="example-subtitle">순서가 있는 리스트 (ol)</h4>
+        <div class="list-example">
           <div class="ordered-list">
             <div class="ordered-item" v-for="(food, index) in manyFoods" :key="food">
               <span class="item-number">{{ index + 1 }}</span>
               <span class="item-text">{{ food }}</span>
             </div>
           </div>
-        </div> -->
-        
+        </div>
+
         <!-- 인덱스와 함께 표시 -->
         <!-- <div class="list-example">
           <h4 class="example-subtitle">인덱스와 함께 표시</h4>
@@ -59,7 +31,7 @@
 
     <!-- Assets 이미지 사용 예제 섹션 -->
     <section class="example-section">
-      <h3 class="section-title">Menu</h3>
+      <h3 class="section-title">메뉴판</h3>
       <div class="example-card">
         <div class="image-grid">
           <div class="image-card" v-for="food in foods_assets" :key="food.name">
@@ -68,7 +40,6 @@
             </div>
             <div class="image-info">
               <span class="food-name">{{ food.name }}</span>
-              <span class="image-source">Assets 폴더</span>
             </div>
           </div>
         </div>
@@ -96,7 +67,7 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import { ref } from 'vue';
 // SVG 이미지들을 assets/images 폴더에서 import (Vite가 자동으로 base64로 변환)
 import img_burrito from '../assets/images/img_burrito.svg'
 import img_cake from '../assets/images/img_cake.svg'
@@ -108,9 +79,9 @@ import img_soup from '../assets/images/img_soup.svg'
 
 // 1. 기본 객체 배열 - message 속성을 가진 객체들
 const items = ref([
-    {message: 'Foo'}, 
-    {message: 'Bar'},
-    {message: 'Bar22'}
+  { message: 'Foo' },
+  { message: 'Bar' },
+  { message: 'Bar22' }
 ])
 
 // 2. 간단한 문자열 배열 - 음식 이름들
@@ -118,44 +89,52 @@ const manyFood = ref(['브리또', '샐러드'])
 
 // 3. 음식 메뉴 배열 - 더 많은 음식 이름들
 const manyFoods = ref([
-    '브리또',
-    '샐러드',
-    '케이크',
-    '스프',
-    '밥',
-    '피자',
-    '생선'
+  '브리또',
+  '샐러드',
+  '케이크',
+  '스프',
+  '밥',
+  '피자',
+  '생선'
 ])
 
 // 4. Assets 이미지 사용 - Vite가 import한 SVG 파일들 사용
 // 이 방식은 빌드 시 최적화되어 base64로 변환됨
 const foods_assets = ref([
-    {name:'브리또', src:img_burrito},
-    {name:'샐러드', src:img_salad},
-    {name:'케이크', src:img_cake},
-    {name:'스프', src:img_soup},
-    {name:'생선', src:img_fish},
-    {name:'피자', src:img_pizza},
-    {name:'밥', src:img_rice}
+  { name: '브리또', src: img_burrito },
+  { name: '샐러드', src: img_salad },
+  { name: '케이크', src: img_cake },
+  { name: '스프', src: img_soup },
+  { name: '생선', src: img_fish },
+  { name: '피자', src: img_pizza },
+  { name: '밥', src: img_rice }
 ])
 
 // 5. Public 이미지 사용 - public 폴더의 이미지들을 절대 경로로 접근
 // 이 방식은 빌드 시 최적화되지 않고 그대로 유지됨
 const foods_public = ref([
-    {name:'브리또', src:"/images/img_burrito.svg"},
-    {name:'샐러드', src:"/images/img_salad.svg"},
-    {name:'케이크', src:"/images/img_cake.svg"},
-    {name:'스프', src:"/images/img_soup.svg"},
-    {name:'생선', src:"/images/img_fish.svg"},
-    {name:'피자', src:"/images/img_pizza.svg"},
-    {name:'밥', src:"/images/img_rice.svg"}
+  { name: '브리또', src: "/images/img_burrito.svg" },
+  { name: '샐러드', src: "/images/img_salad.svg" },
+  { name: '케이크', src: "/images/img_cake.svg" },
+  { name: '스프', src: "/images/img_soup.svg" },
+  { name: '생선', src: "/images/img_fish.svg" },
+  { name: '피자', src: "/images/img_pizza.svg" },
+  { name: '밥', src: "/images/img_rice.svg" }
 ])
 </script>
 
 <style scoped>
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 /* Ex4 컴포넌트 전체 컨테이너 */
 .ex4-container {
-  max-width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* 각 예제 섹션 스타일 */
@@ -361,11 +340,11 @@ const foods_public = ref([
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 1rem;
   }
-  
+
   .section-title {
     font-size: 1.3rem;
   }
-  
+
   .example-card {
     padding: 1.5rem;
   }

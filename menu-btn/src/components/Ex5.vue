@@ -30,35 +30,38 @@
         </div>
       </div>
     </section>
-<!-- 
-    전구 ON/OFF 예제 섹션 -->
+<!-- 전구 ON/OFF 예제 섹션 -->
     <section class="example-section">
-      <h3 class="section-title">💡 ON/OFF 버튼</h3>
-      <div class="example-card">
-        <div class="bulb-section">
-          <!-- 전구 상태 표시 -->
-          <div class="bulb-container">
-            <div class="bulb-wrapper" :class="{ 'bulb-on': lightOn }">
-              <div class="bulb-icon">
-                {{ lightOn ? '💡' : '🔌' }}
-              </div>
-              <div class="bulb-glow" v-if="lightOn"></div>
-            </div>
-            <!-- 전구 상태 표시기 -->
-            <div class="bulb-status">
-              <span class="status-indicator" :class="{ active: lightOn }">
-                {{ lightOn ? 'ON' : 'OFF' }}
-              </span>
-            </div>
+    <h3 class="section-title">💡 ON/OFF 버튼</h3>
+    <div class="example-card">
+      <div class="bulb-section">
+        <!-- 전구 상태 표시 -->
+        <div class="bulb-container">
+          <div class="bulb-wrapper">
+            <!-- 전구 이미지 -->
+            <img
+              class="bulb-image"
+              :src="lightOn ? pic_bulbon : pic_bulboff"
+              alt="전구 상태"
+            />
           </div>
-          <!-- 토글 버튼 -->
-          <button class="action-button toggle-button" @click="lightOn = !lightOn">
-            <span class="button-icon">{{ lightOn ? '🔌' : '💡' }}</span>
-            <span class="button-text">{{ lightOn ? '끄기' : '켜기' }}</span>
-          </button>
+
+          <!-- 전구 상태 텍스트 -->
+          <div class="bulb-status">
+            <span class="status-indicator" :class="{ active: lightOn }">
+              {{ lightOn ? 'ON' : 'OFF' }}
+            </span>
+          </div>
         </div>
+
+        <!-- 토글 버튼 -->
+        <button class="action-button toggle-button" @click="lightOn = !lightOn">
+          <span class="button-icon">{{ lightOn ? '🔌' : '💡' }}</span>
+          <span class="button-text">{{ lightOn ? '끄기' : '켜기' }}</span>
+        </button>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- 입력 카운터 예제 섹션 -->
     <section class="example-section">
@@ -70,7 +73,7 @@
             <input 
               type="text" 
               @input="inpCount++"
-              placeholder="여기에 텍스트를 입력하세요..."
+              placeholder="여기에 텍스트를 입력하세요"
               class="styled-input"
             >
             <!-- 입력 통계 -->
@@ -79,10 +82,10 @@
                 <span class="stat-label">입력 횟수</span>
                 <span class="stat-value">{{ inpCount }}</span>
               </div>
-              <div class="stat-item">
+              <!-- <div class="stat-item">
                 <span class="stat-label">문자 수</span>
                 <span class="stat-value">{{ $event?.target?.value?.length || 0 }}</span>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -184,6 +187,12 @@ const foods_assets = ref([
 </script>
 
 <style scoped>
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 /* Ex5 컴포넌트 전체 컨테이너 */
 .ex5-container {
   max-width: 100%;

@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h2>v-bind 예제</h2>
     
     <div class="example">
       <h3>이미지 바인딩</h3>

@@ -256,7 +256,7 @@ const showDiv = ref(true)
 }
 
 .code-example {
-  background: #8bc5ff;
+  background: #faccbe;
   color: #ecf0f1;
   padding: 0.75rem;
   border-radius: 6px;
