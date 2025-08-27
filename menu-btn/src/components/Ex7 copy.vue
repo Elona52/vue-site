@@ -77,7 +77,6 @@
     <!-- 이미지 클릭 이벤트 섹션 -->
     <div class="section image-section">
       <div class="section-header">
-
         <h3 class="section">🖼️이미지 클릭 이벤트1</h3>
         <p class="section-description">이미지를 클릭하여 메시지를 확인해보세요</p>
       </div>
@@ -99,6 +98,32 @@
       </div>
     </div>
 
+    <div class="section image-section">
+      <div id="tigers">
+        <img src="img_tiger_square.jpeg" width="733" height="733">
+        <button v-on:click="addAnimal($event, 1)">+1</button>
+        <button v-on:click="addAnimal($event, 5)">+5</button>
+        <button v-on:click="addAnimal($event, -1)">-1</button>
+      </div>
+      <div id="moose">
+        <img src="img_moose_square.jpeg" width="549" height="549">
+        <button v-on:click="addAnimal($event, 1)">+1</button>
+        <button v-on:click="addAnimal($event, 5)">+5</button>
+        <button v-on:click="addAnimal($event, -1)">-1</button>
+      </div>
+      <div id="kangaroos">
+        <img src="img_kangaroo_square.jpeg" width="582" height="582">
+        <button v-on:click="addAnimal($event, 1)">+1</button>
+        <button v-on:click="addAnimal($event, 5)">+5</button>
+        <button v-on:click="addAnimal($event, -1)">-1</button>
+      </div>
+      <ul>
+        <li>Tigers: {{ tigers }}</li>
+        <li>Moose: {{ moose }}</li>
+        <li>Kangaroos: {{ kangaroos }}</li>
+      </ul>
+    </div>
+
     <!-- 노트북 섹션 -->
     <div class="notebook-container">
       <h1>📒Notebook</h1>
@@ -116,6 +141,9 @@
 import { ref } from 'vue'
 import img_tiger_square from '../assets/img_tiger_square.jpeg'
 import img_notebook from '../assets/img_notebook.jpg'
+import img_tiger_square from '../assets/img_tiger_square.jpeg'
+import img_kangaroo_square from '../assets/img_kangaroo_square.jpeg'
+import img_moose_square from '../assets/img_moose.jpeg'
 
 // b1
 const txt = ref('txt')
