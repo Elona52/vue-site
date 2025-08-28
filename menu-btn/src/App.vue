@@ -1,6 +1,5 @@
 <script setup>
-import File from './pages/File.vue'
-import Web from './pages/Web.vue'
+// 라우터 관련 import는 필요 없음 (RouterLink, RouterView는 전역으로 사용 가능)
 </script>
 
 <template>

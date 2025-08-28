@@ -1,8 +1,18 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const title = ref('웹기능사 문제')
 const description = ref('이 페이지는 2025 웹 기능사 문제를 기반으로 구성되었습니다.')
+
+const navigateToLayout = () => {
+  router.push('/folder-ro')
+}
+
+const navigateToSite = () => {
+  router.push('/folder-site')
+}
 </script>
 
 <template>
@@ -17,11 +27,11 @@ const description = ref('이 페이지는 2025 웹 기능사 문제를 기반으
         <h2>웹기능사 문제</h2>
         <p>2025 웹기능사 문제 결과</p>
         <div class="example-grid">
-            <div class="example-item">
+            <div class="example-item" @click="navigateToLayout">
             <h3>레이아웃 예제</h3>
             <p>웹 기능사 레이아웃 예제</p>
           </div>
-          <div class="example-item">
+          <div class="example-item" @click="navigateToSite">
             <h3>사이트 예제</h3>
             <p>웹 기능사 사이트 예제</p>
           </div>
@@ -89,6 +99,7 @@ const description = ref('이 페이지는 2025 웹 기능사 문제를 기반으
   padding: 1.5rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .example-item:hover {
