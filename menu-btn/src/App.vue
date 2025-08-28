@@ -22,16 +22,16 @@ const activeComp = ref("Ex5")
 
 // 네비게이션 메뉴 아이템 배열
 const menuItems = [
-  { id: 'Ex1', name: 'v-bind 예제', icon: '📚' },
-  { id: 'Ex2', name: 'v-if 예제', icon: '🔄' },
-  { id: 'Ex3', name: 'v-show 예제', icon: '👁️' },
-  { id: 'Ex4', name: 'v-for 예제', icon: '📝' },
-  { id: 'Ex5', name: 'v-event 예제', icon: '⚡' },
-  { id: 'Ex6', name: 'v-on 예제', icon: '🎯' },
-  { id: 'Ex7', name: 'v-methods 예제', icon: '🔄' },
-  { id: 'Ex8', name: 'v-event modifier 예제', icon: '🛒' },
-  { id: 'Ex9', name: 'v-computed 예제', icon: '🧮' },
-  { id: 'Ex10', name: 'v-watcher 예제', icon: '👀' }
+  { id: 'Ex1', name: 'v-bind 예제', icon: '❐ ' },
+  { id: 'Ex2', name: 'v-if 예제', icon: '❐ ' },
+  { id: 'Ex3', name: 'v-show 예제', icon: '❐ ' },
+  { id: 'Ex4', name: 'v-for 예제', icon: '❐ ' },
+  { id: 'Ex5', name: 'v-event 예제', icon: '❐ ' },
+  { id: 'Ex6', name: 'v-on 예제', icon: '❐ ' },
+  { id: 'Ex7', name: 'v-methods 예제', icon: '❐ ' },
+  { id: 'Ex8', name: 'v-event modifier 예제', icon: '❐ ' },
+  { id: 'Ex9', name: 'v-computed 예제', icon: '❐ ' },
+  { id: 'Ex10', name: 'v-watcher 예제', icon: '❐ ' }
 ]
 </script>
 
