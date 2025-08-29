@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <div class="nav-bar">
-      <button @click="goHome" class="back-button">
+      <button @click="goBack" class="back-button">
         ←
       </button>
     </div>
@@ -180,8 +180,9 @@ const noticeData = [
   }
 ]
 
-const goHome = () => {
-  router.push('/')
+const goBack = () => {
+  // 이전 페이지로 이동 (사이트 폴더)
+  router.push('/folder-site')
 }
 
 const goToSlide = (index) => {
@@ -225,13 +226,17 @@ onUnmounted(() => {
 
 <style scoped>
 .page-container {
-  width: 1400px;
-  background: #f8f9fa;
+  width: 100%;
   min-height: 100vh;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nav-bar {
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
   padding: 15px 20px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -262,9 +267,11 @@ onUnmounted(() => {
 }
 
 .container {
-  width: 1400px;
+  width: 100%;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-height: 700px;
 }
 
@@ -275,6 +282,8 @@ onUnmounted(() => {
   display: flex;
   box-shadow: 0 2px 15px rgba(0,0,0,0.1);
   border-radius: 0 0 15px 15px;
+  width: 100%;
+  max-width: 1400px;
 }
 
 .logo-left {
@@ -301,12 +310,14 @@ onUnmounted(() => {
   padding: 15px;
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 0 0 15px 0;
 }
 
 /* 메뉴 스타일 */
 .menu-nav {
   width: 100%;
+  max-width: 800px;
 }
 
 .menu-list {
@@ -339,6 +350,7 @@ onUnmounted(() => {
   flex: 1;
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 
 .menu-link:hover {
@@ -429,6 +441,8 @@ onUnmounted(() => {
   border: 1px solid #e9ecef;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   margin: 10px 0;
+  width: 100%;
+  max-width: 1400px;
 }
 
 .slide-container {
@@ -603,6 +617,8 @@ onUnmounted(() => {
   border: 1px solid #e9ecef;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   margin: 30px 0 10px 0;
+  width: 100%;
+  max-width: 1400px;
 }
 
 .banner-left {
@@ -611,14 +627,18 @@ onUnmounted(() => {
   padding: 25px;
   border-right: 1px solid #e9ecef;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   border-radius: 8px 0 0 8px;
   border: 1px solid #e9ecef;
 }
 
 .notice-section {
   width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .notice-title {
@@ -628,12 +648,16 @@ onUnmounted(() => {
   font-weight: bold;
   border-bottom: 2px solid #212529;
   padding-bottom: 8px;
+  text-align: center;
+  width: 100%;
 }
 
 .notice-content {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
+  align-items: center;
 }
 
 .notice-item {
@@ -646,6 +670,8 @@ onUnmounted(() => {
   cursor: pointer;
   transition: all 0.3s ease;
   border: 1px solid #e9ecef;
+  width: 100%;
+  max-width: 280px;
 }
 
 .notice-item:hover {
@@ -660,12 +686,14 @@ onUnmounted(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
 }
 
 .notice-date {
   color: #6c757d;
   font-size: 12px;
   margin-left: 10px;
+  flex-shrink: 0;
 }
 
 .banner-center {
@@ -683,22 +711,31 @@ onUnmounted(() => {
 .banner-content {
   text-align: center;
   color: #212529;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
 }
 
 .banner-title {
   margin: 0 0 15px 0;
   font-size: 20px;
   font-weight: bold;
+  text-align: center;
 }
 
 .banner-text {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .banner-text p {
   margin: 5px 0;
   font-size: 16px;
   font-weight: 500;
+  text-align: center;
 }
 
 .banner-button {
@@ -711,6 +748,7 @@ onUnmounted(() => {
   font-size: 14px;
   font-weight: bold;
   transition: all 0.3s ease;
+  text-align: center;
 }
 
 .banner-button:hover {
@@ -725,14 +763,18 @@ onUnmounted(() => {
   background: #ffffff;
   padding: 25px;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   border-radius: 0 8px 8px 0;
   border: 1px solid #e9ecef;
 }
 
 .quick-links {
   width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .quick-title {
@@ -742,12 +784,16 @@ onUnmounted(() => {
   font-weight: bold;
   border-bottom: 2px solid #212529;
   padding-bottom: 8px;
+  text-align: center;
+  width: 100%;
 }
 
 .quick-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
+  align-items: center;
 }
 
 .quick-item {
@@ -760,6 +806,9 @@ onUnmounted(() => {
   font-size: 14px;
   display: block;
   border: 1px solid #e9ecef;
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
 }
 
 .quick-item:hover {
@@ -779,6 +828,8 @@ onUnmounted(() => {
   border: 1px solid #e9ecef;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   margin: 30px 0 10px 0;
+  width: 100%;
+  max-width: 1400px;
 }
 
 .footer-left {
@@ -810,5 +861,48 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   border-radius: 0 8px 8px 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
+  .logo, .slide, .banner, .footer {
+    max-width: 100%;
+  }
+  
+  .menu-list {
+    flex-direction: column;
+  }
+  
+  .menu-item {
+    flex: none;
+  }
+  
+  .menu-link {
+    border-right: none;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .menu-item:last-child .menu-link {
+    border-bottom: none;
+  }
+  
+  .banner {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .banner-left, .banner-center, .banner-right {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .banner-right {
+    border-bottom: none;
+  }
 }
 </style>
