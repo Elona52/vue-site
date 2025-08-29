@@ -4,22 +4,22 @@
       <button @click="goBack" class="back-button">
         ←
       </button>
-      <h2 class="folder-title">Site 폴더</h2>
+      <h2 class="folder-title">레이아웃 폴더</h2>
     </div>
     
     <div class="content">
       <div class="file-list">
-        <div class="file-item" @click="navigateTo('/site-a')">
+        <div class="file-item" @click="navigateTo('/a1')">
           <div class="file-icon">📄</div>
           <div class="file-info">
-            <div class="file-name">SiteA.vue</div>
+            <div class="file-name">A1.vue</div>
           </div>
         </div>
         
-        <div class="file-item" @click="navigateTo('/site-b')">
+        <div class="file-item" @click="navigateTo('/b1')">
           <div class="file-icon">📄</div>
           <div class="file-info">
-            <div class="file-name">SiteB.vue</div>
+            <div class="file-name">B1_.vue</div>
           </div>
         </div>
       </div>
@@ -27,18 +27,28 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import { useRouter } from 'vue-router'
 
-const router = useRouter()
+export default {
+  name: 'FolderRoComponent',
+  setup() {
+    const router = useRouter()
 
-const goBack = () => {
-  // 이전 페이지로 이동 (웹 예제 페이지)
-  router.push('/web')
-}
+    const goBack = () => {
+      // 이전 페이지로 이동 (웹 예제 페이지)
+      router.push('/web')
+    }
 
-const navigateTo = (path) => {
-  router.push(path)
+    const navigateTo = (path) => {
+      router.push(path)
+    }
+
+    return {
+      goBack,
+      navigateTo
+    }
+  }
 }
 </script>
 
@@ -53,7 +63,7 @@ const navigateTo = (path) => {
 }
 
 .nav-bar {
-  background: linear-gradient(135deg,rgb(151, 168, 247) 0%,rgb(191, 159, 223) 100%);
+  background: linear-gradient(135deg, rgb(151, 168, 247) 0%,rgb(191, 159, 223) 100%);
   padding: 15px 20px;
   display: flex;
   align-items: center;
@@ -102,36 +112,32 @@ const navigateTo = (path) => {
 .file-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   width: 100%;
-  max-width: 600px;
-  align-items: center;
 }
 
 .file-item {
-  background-color: white;
-  padding: 20px;
+  background: white;
   border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 1px solid #e0e0e0;
+  padding: 15px;
   display: flex;
   align-items: center;
   gap: 15px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border: 1px solid #e0e0e0;
 }
 
 .file-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-  border-color: #007bff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  border-color: #667eea;
 }
 
 .file-icon {
   font-size: 2rem;
-  color: #007bff;
+  color: #667eea;
 }
 
 .file-info {
@@ -139,31 +145,34 @@ const navigateTo = (path) => {
 }
 
 .file-name {
-  font-size: 1.1rem;
   font-weight: 600;
   color: #333;
-  margin: 0;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 768px) {
-  .folder-page {
-    padding: 0 10px;
+  .nav-bar {
+    padding: 10px 15px;
   }
   
-  .nav-bar {
-    max-width: 100%;
+  .folder-title {
+    font-size: 1.2rem;
   }
   
   .content {
-    padding: 20px 10px;
-  }
-  
-  .file-list {
-    max-width: 100%;
+    padding: 20px 15px;
   }
   
   .file-item {
-    max-width: 100%;
+    padding: 12px;
+  }
+  
+  .file-icon {
+    font-size: 1.5rem;
+  }
+  
+  .file-name {
+    font-size: 1rem;
   }
 }
 </style>

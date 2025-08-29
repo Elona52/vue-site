@@ -12,6 +12,7 @@ import Folder_site from './views/Folder_site.vue'
 import A1 from './component2/A1.vue'
 import B1_ from './component2/B1_.vue'
 import SiteA from './component2/SiteA.vue'
+import SiteB from './component2/SiteB.vue'
 
 const routes = [
     {
@@ -53,6 +54,11 @@ const routes = [
         path: '/site-a',
         name: 'SiteA',
         component: SiteA
+    },
+    {
+        path: '/site-b',
+        name: 'SiteB',
+        component: SiteB
     }
 ]
 
