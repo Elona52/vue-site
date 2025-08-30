@@ -1,6 +1,9 @@
 <script setup>
 // Vue 3 Composition API 사용
-import {ref} from 'vue'
+import {ref, inject, onMounted} from 'vue'
+
+// App.vue에서 제공하는 히스토리 추가 함수 주입
+const addFileToHistory = inject('addFileToHistory')
 
 // 각 예제 컴포넌트들을 import
 import Ex1 from '../components/Ex1.vue'  // Vue.js 기초 예제
@@ -33,37 +36,49 @@ const menuItems = [
   { id: 'Ex9', name: 'v-computed 예제', icon: '❐ ' },
   { id: 'Ex10', name: 'v-watcher 예제', icon: '❐ ' }
 ]
+
+// 파일 선택 함수
+const selectFile = (fileId) => {
+  activeComp.value = fileId
+  
+  // 히스토리에 추가
+  const selectedItem = menuItems.find(item => item.id === fileId)
+  if (selectedItem && addFileToHistory) {
+    addFileToHistory(fileId, selectedItem.name)
+  }
+}
+
+// 컴포넌트 마운트 시 최근 학습에서 파일 선택 이벤트 리스너 추가
+onMounted(() => {
+  window.addEventListener('selectFile', (event) => {
+    const { fileId } = event.detail
+    selectFile(fileId)
+  })
+})
 </script>
 
 <template>
   <!-- 메인 블로그 컨테이너 -->
   <div class="blog-container">
-    <!-- 사이드바 -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2 class="sidebar-title">Vue 핵심내용</h2>
-        <p class="sidebar-subtitle">Vue.js의 핵심 개념들</p>
+    <!-- 상단 네비게이션 -->
+    <nav class="top-navigation">
+      <div class="nav-header">
+        <h2 class="nav-title">Vue 핵심내용</h2>
       </div>
       
-      <nav class="sidebar-nav">
-        <div class="nav-menu">
-          <!-- 각 메뉴 아이템을 버튼으로 렌더링 -->
-          <button 
-            v-for="item in menuItems" 
-            :key="item.id"
-            @click="activeComp = item.id"
-            :class="['sidebar-button', { active: activeComp === item.id }]"
-          >
-            <span class="button-icon">{{ item.icon }}</span>
-            <span class="button-text">{{ item.name }}</span>
-          </button>
-        </div>
-      </nav>
-      
-      <div class="sidebar-footer">
-        <p>&copy; 2025 Vue jimin's 학습블로그</p>
+      <div class="nav-menu">
+        <!-- 각 메뉴 아이템을 버튼으로 렌더링 -->
+        <button 
+          v-for="item in menuItems" 
+          :key="item.id"
+          @click="selectFile(item.id)"
+          :class="['nav-button', { active: activeComp === item.id }]"
+        >
+          <span class="button-icon">{{ item.icon }}</span>
+          <span class="button-text">{{ item.name }}</span>
+        </button>
       </div>
-    </aside>
+    </nav>
 
     <!-- 메인 콘텐츠 영역 -->
     <main class="main-content">
@@ -78,7 +93,7 @@ const menuItems = [
       <div class="content-body">
         <!-- KeepAlive로 컴포넌트 상태 유지 -->
         <KeepAlive>
-          <component :is="pages[activeComp]"></component>
+          <component :is="pages[activeComp]" class="vue-component"></component>
         </KeepAlive>
       </div>
     </main>
@@ -90,109 +105,101 @@ const menuItems = [
 .blog-container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  height: auto !important;
+  max-height: none !important;
 }
 
-/* 사이드바 스타일 */
-.sidebar {
-  width: 280px;
+/* 상단 네비게이션 스타일 */
+.top-navigation {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.sidebar-header {
-  padding: 2rem 1.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  z-index: 100;
 }
 
-.sidebar-title {
+.nav-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.nav-title {
   font-size: 1.5rem;
   font-weight: 700;
   color: #2d3748;
   margin: 0 0 0.5rem 0;
 }
 
-.sidebar-subtitle {
+.nav-subtitle {
   font-size: 0.9rem;
   color: #7f8c8d;
   margin: 0;
   font-weight: 400;
 }
 
-.sidebar-nav {
-  flex: 1;
-  padding: 1rem 0;
-}
-
 .nav-menu {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0 1rem;
+  flex-wrap: wrap;
 }
 
-/* 사이드바 버튼 스타일 */
-.sidebar-button {
+/* 네비게이션 버튼 스타일 */
+.nav-button {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.25rem;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
   border: none;
   border-radius: 12px;
   background: transparent;
-  color: #4a5568;
+  color: #334155;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-align: left;
-  width: 100%;
+  text-align: center;
+  min-width: 120px;
+  justify-content: center;
+  border: 1px solid transparent;
 }
 
 /* 버튼 호버 효과 */
-.sidebar-button:hover {
-  background: rgba(74, 85, 104, 0.1);
-  transform: translateX(5px);
+.nav-button:hover {
+  background: transparent;
+  border-color: transparent;
+  transform: translateX(4px);
 }
 
 /* 활성 버튼 스타일 */
-.sidebar-button.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+.nav-button.active {
+  background: transparent;
+  color: #334155;
+  border-color: transparent;
+  font-weight: 600;
 }
 
 .button-icon {
-  font-size: 1.3rem;
-  min-width: 24px;
+  font-size: 1rem;
+  min-width: 16px;
 }
 
 .button-text {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 500;
-}
-
-.sidebar-footer {
-  padding: 1.5rem;
-  text-align: center;
-  color: #7f8c8d;
-  font-size: 0.8rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* 메인 콘텐츠 영역 */
 .main-content {
   flex: 1;
-  margin-left: 280px;
   padding: 2rem;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
 }
 
 .content-header {
@@ -202,6 +209,7 @@ const menuItems = [
   padding: 2rem;
   margin-bottom: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
 .content-title {
@@ -219,44 +227,249 @@ const menuItems = [
   border-radius: 15px;
   padding: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  min-height: 400px;
+  min-height: 800px;
+  overflow: visible;
+  flex: 1;
+  width: 100%;
+}
+
+/* 스크롤바 스타일링 */
+.content-body::-webkit-scrollbar {
+  width: 18px;
+}
+
+.content-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.content-body::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.content-body::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Vue 컴포넌트 스타일 */
+.vue-component {
+  width: 100%;
+  min-height: 100%;
+  height: auto !important;
+  max-height: none !important;
+  padding-bottom: 4rem;
+  overflow: visible !important;
+}
+
+/* Vue 컴포넌트 내부 스타일 재정의 */
+.vue-component :deep(.container) {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.vue-component :deep(.example) {
+  margin-bottom: 30px !important;
+  padding: 25px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  background: #f8fafc !important;
+  overflow: visible !important;
+  min-height: 100px !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+.vue-component :deep(h3) {
+  color: #2d3748 !important;
+  margin-bottom: 20px !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+}
+
+.vue-component :deep(.btn) {
+  background: #667eea !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 20px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  margin: 8px !important;
+}
+
+.vue-component :deep(.btn:hover) {
+  background: #5a67d8 !important;
+  transform: translateY(-1px) !important;
+}
+
+.vue-component :deep(.input) {
+  width: 100% !important;
+  padding: 12px 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 20px !important;
+}
+
+.vue-component :deep(.demo-image) {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 8px !important;
+  margin-bottom: 20px !important;
+}
+
+.vue-component :deep(.text-demo) {
+  padding: 20px !important;
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  margin-bottom: 20px !important;
+  overflow: visible !important;
+  min-height: 60px !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+.vue-component :deep(.color-demo) {
+  padding: 25px !important;
+  border-radius: 6px !important;
+  margin-bottom: 20px !important;
+  text-align: center !important;
+  font-weight: bold !important;
+  overflow: visible !important;
+  min-height: 80px !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+.vue-component :deep(.class-demo) {
+  padding: 20px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  margin-bottom: 20px !important;
+  text-align: center !important;
+  overflow: visible !important;
+  min-height: 60px !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+.vue-component :deep(.status) {
+  padding: 20px !important;
+  border-radius: 6px !important;
+  margin-bottom: 20px !important;
+  font-weight: bold !important;
+  overflow: visible !important;
+  min-height: 60px !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+.vue-component :deep(.in-stock) {
+  background: #d4edda !important;
+  color: #155724 !important;
+}
+
+.vue-component :deep(.out-of-stock) {
+  background: #f8d7da !important;
+  color: #721c24 !important;
+}
+
+.vue-component :deep(.low-stock) {
+  background: #fff3cd !important;
+  color: #856404 !important;
+}
+
+.vue-component :deep(.found) {
+  background: #d1ecf1 !important;
+  color: #0c5460 !important;
+}
+
+.vue-component :deep(.not-found) {
+  background: #f8d7da !important;
+  color: #721c24 !important;
+}
+
+.vue-component :deep(.controls) {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  margin-top: 20px !important;
+  flex-wrap: wrap !important;
+}
+
+.vue-component :deep(.count) {
+  font-weight: bold !important;
+  font-size: 1.3rem !important;
+  min-width: 50px !important;
+  text-align: center !important;
+}
+
+.vue-component :deep(.slider) {
+  width: 100% !important;
+  margin: 20px 0 !important;
+}
+
+.vue-component :deep(.pizza-result) {
+  text-align: center !important;
+  padding: 20px !important;
+}
+
+.vue-component :deep(.pizza-img) {
+  max-width: 150px !important;
+  height: auto !important;
+  margin-top: 20px !important;
+}
+
+/* 긴 텍스트나 내용이 잘리지 않도록 */
+.vue-component :deep(p) {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  line-height: 1.7 !important;
+  margin-bottom: 15px !important;
+  font-size: 1rem !important;
+}
+
+.vue-component :deep(div) {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
 }
 
 /* 반응형 디자인 - 모바일 대응 */
 @media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    border-right: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .main-content {
-    margin-left: 0;
+  .top-navigation {
     padding: 1rem;
   }
   
-  .sidebar-header {
-    padding: 1rem;
-  }
-  
-  .sidebar-title {
+  .nav-title {
     font-size: 1.2rem;
   }
   
   .nav-menu {
-    flex-direction: row;
-    overflow-x: auto;
-    padding: 1rem;
-    gap: 0.5rem;
+    gap: 0.25rem;
   }
   
-  .sidebar-button {
-    white-space: nowrap;
-    min-width: 120px;
-    justify-content: center;
-    padding: 0.75rem 1rem;
+  .nav-button {
+    min-width: 100px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .button-text {
+    font-size: 0.75rem;
+  }
+  
+  .main-content {
+    padding: 1rem;
   }
   
   .content-title {
@@ -265,6 +478,19 @@ const menuItems = [
   
   .content-body {
     padding: 1rem;
+    min-height: 1000px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav-button {
+    width: 100%;
+    max-width: 200px;
   }
 }
 </style>

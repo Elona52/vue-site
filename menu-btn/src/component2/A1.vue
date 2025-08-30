@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <div class="nav-bar">
-      <button @click="goBack" class="back-button">
+      <button @click="goHome" class="back-button">
         ←
       </button>
     </div>
@@ -89,29 +89,21 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const goBack = () => {
-  // 이전 페이지로 이동 (레이아웃 폴더)
-  router.push('/folder-ro')
+const goHome = () => {
+  router.push('/')
 }
 </script>
 
 <style scoped>
 .page-container {
-  width: 100%;
-  min-height: 100vh;
+  width: 1200px;
   background-color: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .nav-bar {
+  width: 1200px;
   padding: 15px 20px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 1200px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
 }
 
 .back-button {
@@ -137,46 +129,40 @@ const goBack = () => {
 }
 
 .container {
-  width: 100%;
-  max-width: 1200px;
+  width: 1200px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: 700px;
+  height: 700px; /* 화면 전체 높이 사용 */
 }
 
 .logo {
   background-color: #f5f5f5;
-  padding: 0;
-  height: 100px;
-  display: flex;
-  width: 100%;
-  max-width: 1200px;
+  padding: 0; /* 패딩 제거하여 딱 맞게 */
+  height: 100px;  display: flex; /* flexbox 사용 */
+  /* 고정 높이나 컨텐츠 크기에 맞게 */
 }
 
 .logo-left {
-  width: 33.33%;
+  width: 33.33%; /* 1/3 지점 */
   height: 100px;
   background-color: #e0e0e0;
-  padding: 20px;
+  padding: 20px; /* 내부 여백 추가 */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .logo-right {
-  width: 66.67%;
+  width: 66.67%; /* 나머지 2/3 */
   background-color: #f0f0f0;
   padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 /* 메뉴 스타일 */
 .menu-nav {
   width: 100%;
-  max-width: 800px;
 }
 
 .menu-list {
@@ -184,14 +170,14 @@ const goBack = () => {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 0;
-  border: 2px solid #333;
+  gap: 0; /* 간격 제거 */
+  border: 2px solid #333; /* 전체 테두리 */
   border-radius: 4px;
 }
 
 .menu-item {
   position: relative;
-  flex: 1;
+  flex: 1; /* 균등 분할 */
 }
 
 .menu-link {
@@ -201,17 +187,16 @@ const goBack = () => {
   padding: 10px 15px;
   display: block;
   transition: color 0.3s;
-  border-right: 1px solid #333;
-  flex: 1;
-  text-align: center;
+  border-right: 1px solid #333; /* 오른쪽 구분선만 */
+  flex: 1; /* 균등 분할 */
 }
 
 .menu-link:hover {
-  color:rgb(143, 145, 147);
+  color: #007bff;
 }
 
 .menu-item:last-child .menu-link {
-  border-right: none;
+  border-right: none; /* 마지막 항목의 오른쪽 테두리 제거 */
 }
 
 /* 서브메뉴 스타일 */
@@ -219,19 +204,18 @@ const goBack = () => {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #ffffff;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   list-style: none;
   margin: 0;
   padding: 0;
-  min-width: 180px;
+  min-width: 150px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-5px);
-  transition: all 0.2s ease;
-  z-index: 1000;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
 }
 
 .menu-item:hover .submenu {
@@ -251,63 +235,51 @@ const goBack = () => {
 .submenu a {
   text-decoration: none;
   color: #333;
-  padding: 15px 20px;
+  padding: 12px 15px;
   display: block;
-  transition: all 0.3s ease;
-  border-radius: 8px;
-  margin: 5px;
+  transition: background-color 0.3s;
 }
 
 .submenu a:hover {
-  background: #f8f9fa;
-  color: #212529;
-  transform: none;
-  box-shadow: none;
+  background-color: #f8f9fa;
+  color: #007bff;
 }
 
 .slide {
   background-color: #bbb;
   padding: 10px;
   height: 300px;
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0;
 }
 
 .banner {
   background-color: #999;
-  padding: 0;
+  padding: 0; /* 패딩 제거 */
   height: 200px;
-  display: flex;
-  width: 100%;
-  max-width: 1200px;
+  display: flex; /* flexbox 사용 */
 }
 
 .banner-left {
-  width: 33.33%;
+  width: 33.33%; /* 1/3 */
   background-color: #888;
   padding: 20px;
-  border-right: 1px solid #777;
+  border-right: 1px solid #777; /* 구분선 */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .banner-center {
-  width: 33.33%;
+  width: 33.33%; /* 1/3 */
   background-color: #777;
   padding: 20px;
-  border-right: 1px solid #777;
+  border-right: 1px solid #777; /* 구분선 */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .banner-right {
-  width: 33.33%;
+  width: 33.33%; /* 1/3 */
   background-color: #666;
   padding: 20px;
   display: flex;
@@ -317,69 +289,39 @@ const goBack = () => {
 
 .footer {
   background-color: #666;
-  padding: 0;
+  padding: 0; /* 패딩 제거 */
   color: white;
   text-align: center;
   height: 100px;
-  display: flex;
-  width: 100%;
-  max-width: 1200px;
+  display: flex; /* flexbox 사용 */
 }
 
 .footer-left {
-  width: 16.67%;
+  width: 16.67%; /* 1/6 */
   background-color: #555;
   padding: 20px;
-  border-right: 1px solid #777;
+  border-right: 1px solid #777; /* 구분선 */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .footer-center {
-  width: 66.67%;
+  width: 66.67%; /* 4/6 */
   background-color: #444;
   padding: 20px;
-  border-right: 1px solid #777;
+  border-right: 1px solid #777; /* 구분선 */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .footer-right {
-  width: 16.67%;
+  width: 16.67%; /* 1/6 */
   background-color: #555;
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .container {
-    max-width: 100%;
-    padding: 0 10px;
-  }
-  
-  .logo, .slide, .banner, .footer {
-    max-width: 100%;
-  }
-  
-  .menu-list {
-    flex-direction: column;
-  }
-  
-  .menu-item {
-    flex: none;
-  }
-  
-  .menu-link {
-    border-right: none;
-    border-bottom: 1px solid #333;
-  }
-  
-  .menu-item:last-child .menu-link {
-    border-bottom: none;
-  }
 }
 </style>

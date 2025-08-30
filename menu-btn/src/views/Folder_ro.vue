@@ -1,7 +1,7 @@
 <template>
   <div class="folder-page">
     <div class="nav-bar">
-      <button @click="goBack" class="back-button">
+      <button @click="goHome" class="back-button">
         ←
       </button>
       <h2 class="folder-title">레이아웃 폴더</h2>
@@ -32,9 +32,8 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const goBack = () => {
-  // 이전 페이지로 이동 (웹 예제 페이지)
-  router.push('/web')
+const goHome = () => {
+  router.push('/')
 }
 
 const navigateTo = (path) => {
@@ -44,12 +43,9 @@ const navigateTo = (path) => {
 
 <style scoped>
 .folder-page {
-  width: 100%;
-  min-height: 100vh;
+  width: 1000px;
+  height: 100vh;
   background-color: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .nav-bar {
@@ -59,8 +55,6 @@ const navigateTo = (path) => {
   align-items: center;
   gap: 20px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 1000px;
 }
 
 .back-button {
@@ -94,18 +88,13 @@ const navigateTo = (path) => {
 .content {
   padding: 40px 20px;
   max-width: 800px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  margin: 0 auto;
 }
 
 .file-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%;
-  max-width: 600px;
-  align-items: center;
 }
 
 .file-item {
@@ -118,20 +107,17 @@ const navigateTo = (path) => {
   display: flex;
   align-items: center;
   gap: 15px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .file-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  background-color: #f8f9fa;
   border-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .file-icon {
   font-size: 2rem;
-  color: #007bff;
 }
 
 .file-info {
@@ -139,36 +125,14 @@ const navigateTo = (path) => {
 }
 
 .file-name {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #333;
-  margin: 0;
+  margin-bottom: 5px;
 }
 
 .file-description {
   color: #666;
   font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-  .folder-page {
-    padding: 0 10px;
-  }
-  
-  .nav-bar {
-    max-width: 100%;
-  }
-  
-  .content {
-    padding: 20px 10px;
-  }
-  
-  .file-list {
-    max-width: 100%;
-  }
-  
-  .file-item {
-    max-width: 100%;
-  }
 }
 </style>
